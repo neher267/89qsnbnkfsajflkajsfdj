@@ -24,10 +24,5 @@ class PublicController extends Controller
     public function sign_in()
     {
     	return view('auth.login');
-    }
-
-    public function sign_up()
-    {
-    	return view('auth.register');
-    }
+    }    
 }

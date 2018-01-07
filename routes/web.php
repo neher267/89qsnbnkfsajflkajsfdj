@@ -15,9 +15,11 @@ Route::get('/', 'PublicController@index');
 Route::get('/contact-us', 'PublicController@contact_us');
 Route::get('/about-us', 'PublicController@about_us');
 Route::get('/sign-in', 'PublicController@sign_in');
-Route::get('/sign-up', 'PublicController@sign_up');
+Route::resource('register', 'RegisterController');
 
+Route::get('login', 'LoginController@index');
+Route::post('login', 'LoginController@login');
+Route::post('logout', 'LoginController@logout');
 
-Auth::routes();
-
+Route::post('validation', 'ValidationController@mobile_validate');
 Route::get('/home', 'HomeController@index')->name('home');

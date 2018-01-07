@@ -17,6 +17,7 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
 	<!-- //meta-tags -->
 	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />

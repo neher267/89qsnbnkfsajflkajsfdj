@@ -13,8 +13,8 @@
 			<li class="{{ Request::segment(1) == 'sign-in' ?  'active':'' }}">
 				<a href="{{ url('sign-in') }}" class="effect-3">Sign in</a>
 			</li>
-			<li class="{{ Request::segment(1) == 'sign-up' ?  'active':'' }}">
-				<a href="{{url('sign-up')}}" class="effect-3">Sign UP</a>
+			<li class="{{ Request::segment(1) == 'register' ?  'active':'' }}">
+				<a href="{{route('register.create')}}" class="effect-3">Sign UP</a>
 			</li>
 		</ul>
 	</nav>
