@@ -13,9 +13,14 @@
         </div>
         @if(session('validation', 'no') == 'no')
             <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 form-grids">
+                @if ($errors->has('mobile'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('mobile') }}</strong>
+                      </span>
+                 @endif
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="country_code">+880</span>
-                    <input  id="phone_number" type="text" class="form-control" placeholder="Mobile No">
+                    <input  id="phone_number" type="text" class="form-control" placeholder="Mobile No">                     
                 </div>
                 <button class="btn btn-1 btn-1d" style="margin-bottom: 150px" onclick="smsLogin()">Verify</button>
             </div>
@@ -39,6 +44,16 @@
             </script>
             @else   
         <div class="login-form">
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+              
             <form action="{{ route('register.store') }}" method="post">
             {{ csrf_field() }}
                 <div class="">

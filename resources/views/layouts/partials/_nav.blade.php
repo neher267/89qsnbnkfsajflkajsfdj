@@ -12,6 +12,9 @@
 			</li>
 			
 			@if($user = Sentinel::check())
+			<li class="{{ Request::segment(1) == 'contact-us' ?  'active':'' }}">
+				<a href="#" class="effect-3">Quiz Test</a>
+			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
 				150px">{{ $user->name }}

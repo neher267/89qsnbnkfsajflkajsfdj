@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\StudentClass;
 use App\Gender;
 use Sentinel;
+use App\Http\Requests\Registration;
 
 class RegisterController extends Controller
 {
@@ -30,8 +31,8 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
-    {    
+    public function store(Registration $request)
+    {   
         $data = $request->all();
         $data['mobile'] = session('mobile'); 
         $user = Sentinel::registerAndActivate($data);
