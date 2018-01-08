@@ -14,12 +14,12 @@
 Route::get('/', 'PublicController@index');
 Route::get('/contact-us', 'PublicController@contact_us');
 Route::get('/about-us', 'PublicController@about_us');
-Route::get('/sign-in', 'PublicController@sign_in');
 Route::resource('register', 'RegisterController');
 
-Route::get('login', 'LoginController@index');
-Route::post('login', 'LoginController@login');
+Route::get('sign-in', 'LoginController@index');
+Route::post('sign-in', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
+Route::resource('profile', 'ProfileController');
 
 Route::post('validation', 'ValidationController@mobile_validate');
 Route::get('/home', 'HomeController@index')->name('home');

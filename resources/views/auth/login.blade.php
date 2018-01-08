@@ -14,14 +14,15 @@
             </div>
         </div>
         <div class="login-form">
-            <form action="#" method="post">
+            <form action="{{ url('sign-in' )}}" method="post">
+                {{ csrf_field() }}
                 <div class="">
-                    <p>User Name </p>
-                    <input type="text" class="name" name="user name" required="" />
+                    <p>Mobile</p>
+                    <input type="text" class="name" name="mobile" required="" />
                 </div>
                 <div class="">
                     <p>Password</p>
-                    <input type="password" class="password" name="Password" required="" />
+                    <input type="password" class="password" name="password" required="" />
                 </div>
                 <label class="anim">
                     <input type="checkbox" class="checkbox">
@@ -32,10 +33,10 @@
                         <a href="#">Forgot password?</a>
                     </h6>
                 </div>
-                <input type="submit" value="Login">
+                <input type="submit" value="Sign In">
                 <div class="register-forming">
                     <p>To Register New Account --
-                        <a href="{{ url('sign-up') }}">Click Here</a>
+                        <a href="{{ route('register.create') }}">Click Here</a>
                     </p>
                 </div>
             </form>

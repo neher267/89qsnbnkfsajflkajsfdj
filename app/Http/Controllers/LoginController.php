@@ -9,11 +9,12 @@ class LoginController extends Controller
 {
 	public function index()
     {
-    	return view('layouts.auth.login');
+    	return view('auth.login');
     }
 
     public function login (Request $request)
     {
+        //dd($request->all());
     	Sentinel::authenticate($request->all());
         	if(Sentinel::check())
         	{
