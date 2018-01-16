@@ -11,7 +11,7 @@
 
             </div>
         </div>
-        @if(session('validation', 'no') == 'no')
+        @if(session('validation', 'yes') == 'no')
             <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 form-grids">
                 @if ($errors->has('mobile'))
                       <span class="help-block">
@@ -87,7 +87,7 @@
                     <input type="password" class="password" name="password_confirmation" id="password2" required="" />
                 </div>
                 <label class="anim">
-                    <input type="checkbox" class="checkbox">
+                    <input type="checkbox" class="checkbox" required>
                     <span>I Accept Terms & Conditions</span>
                 </label>
                 <input type="submit" value="Register">

@@ -11,9 +11,24 @@
 				<a href="{{ url('contact-us') }}" class="effect-3">Contact Us</a>
 			</li>
 			
-			@if($user = Sentinel::check())
-			<li class="{{ Request::segment(1) == 'contact-us' ?  'active':'' }}">
-				<a href="#" class="effect-3">Quiz Test</a>
+			@if($user = Sentinel::check())			
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
+				150px">Question
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" role="menu">	
+				<?php
+				$class_id = $user->class_id;
+				?>			
+					<li>
+						@foreach(config('settings.subjects') as $subject)
+							@for($year = 2017; $year < 2020; $year++)
+							<a href="{{url("question/$subject/$year/$class_id")}}">{{$year. ' '.$subject}}</a>
+							@endfor
+						@endforeach
+					</li>			
+				</ul>
 			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
