@@ -23,7 +23,7 @@
 				?>			
 					<li>
 						@foreach(config('settings.subjects') as $subject)
-							@for($year = 2017; $year < 2020; $year++)
+							@for($year = 2017; $year < (int) date('Y'); $year++)
 							<a href="{{url("question/$subject/$year/$class_id")}}">{{$year. ' '.$subject}}</a>
 							@endfor
 						@endforeach

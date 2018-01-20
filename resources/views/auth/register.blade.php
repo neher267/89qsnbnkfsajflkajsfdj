@@ -11,7 +11,7 @@
 
             </div>
         </div>
-        @if(session('validation', 'yes') == 'no')
+        @if(session('validation', 'no') == 'no')
             <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 form-grids">
                 @if ($errors->has('mobile'))
                       <span class="help-block">
