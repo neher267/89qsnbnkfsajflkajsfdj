@@ -1,5 +1,11 @@
+
+<style>
+	.navbar-nav{
+		width: 75%;
+	}
+</style>
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	<nav class="link-effect-2" id="link-effect-2">
+	<nav class="link-effect-1" id="link-effect-1">
 		<ul class="nav navbar-nav">
 			<li class="{{ Request::segment(1) == '' ?  'active':'' }}">
 				<a href="{{ url('/' )}}" class="effect-3">Home</a>
@@ -11,8 +17,24 @@
 				<a href="{{ url('contact-us') }}" class="effect-3">Contact Us</a>
 			</li>
 			
-			@if($user = Sentinel::check())			
+			@if($user = Sentinel::check())	
 			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
+				150px">Play Game
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" role="menu">	
+				<?php
+				$class_id = $user->class_id;
+				?>			
+					<li>
+						@foreach(config('settings.subjects') as $subject)
+							<a href="{{url("play-game/$subject")}}">{{$subject}}</a>
+						@endforeach
+					</li>			
+				</ul>
+			</li>		
+			<!-- <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
 				150px">Question
 					<span class="caret"></span>
@@ -29,10 +51,10 @@
 						@endforeach
 					</li>			
 				</ul>
-			</li>
+			</li> -->
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 
-				150px">{{ $user->name }}
+				150px">{{ request()->user()->name }}
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu">

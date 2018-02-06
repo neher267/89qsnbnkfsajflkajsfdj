@@ -11,13 +11,16 @@
 
             </div>
         </div>
-        @if(session('validation', 'no') == 'no')
+        @if(session('validation') == 'no')
             <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 form-grids">
                 @if ($errors->has('mobile'))
                       <span class="help-block">
                           <strong>{{ $errors->first('mobile') }}</strong>
                       </span>
                  @endif
+                 <div id="abc">
+                   hh
+                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="country_code">+880</span>
                     <input  id="phone_number" type="text" class="form-control" placeholder="Mobile No">                     
@@ -35,7 +38,7 @@
                       function loginCallback(response) {
                            if (response.status === "PARTIALLY_AUTHENTICATED") 
                            {
-                            // document.getElementById("code").value = response.code;
+                                // document.getElementById("code").value = response.code;
                                // document.getElementById("csrf").value = response.state;
                                document.getElementById("mobile").value = document.getElementById("phone_number").value;
                                document.getElementById("login_success").submit();
@@ -116,8 +119,10 @@
 
           // phone form submission handler
           function smsLogin() {
+
             var countryCode = document.getElementById("country_code").innerHTML;
             var phoneNumber = document.getElementById("phone_number").value;
+            document.getElementById("mobile").value = document.getElementById("phone_number").value;
             AccountKit.login(
               'PHONE', 
               {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified

@@ -18,6 +18,10 @@ class RegisterController extends Controller
      */
     public function create()
     {
+        if(!session('validation'))
+        {
+            session(['validation' => 'no']); 
+        }          
         $classes = StudentClass::get();
         $genders = Gender::get();
 

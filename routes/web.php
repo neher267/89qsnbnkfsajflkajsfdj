@@ -14,3 +14,6 @@ Route::post('validation', 'ValidationController@mobile_validate');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('question/{subject}/{year}/{class}' , 'QuestionController@show');
+
+//game
+Route::get('play-game/{subject}', 'GameController@index');
