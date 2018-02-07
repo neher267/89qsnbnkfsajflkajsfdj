@@ -1,4 +1,5 @@
 <div class="mkl_footer" style="margin-top: 50px;">
+	@if(!Request::is('play-game/bangla'))
 	<div class="sub-footer">
 		<div class="container">
 			<div class="mkls_footer_grid">
@@ -44,6 +45,7 @@
 			<!-- footer-button-info -->
 		</div>
 	</div>
+	@else
 	<div class="footer-copy-right">
 		<div class="container">
 			<div class="allah-copy">
@@ -67,3 +69,4 @@
 		</div>
 	</div>
 </div>
+@endif 

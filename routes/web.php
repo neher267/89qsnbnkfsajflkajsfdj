@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/', 'PublicController@index');
 Route::get('/contact-us', 'PublicController@contact_us');
 Route::get('/about-us', 'PublicController@about_us');

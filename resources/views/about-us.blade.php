@@ -1,12 +1,9 @@
 @extends('layouts.master')
 
-
+@section('banner')
+	@include('layouts.partials._banner')
+@endsection
 @section('main-content')
-<!-- short -->
-
-<!-- //short-->
-
-<!-- about -->
 <div class="about-sec" id="about">
 	<div class="container">
 		<div class="title-div">
@@ -197,6 +194,4 @@
 	</div>
 </div>
 <!-- //about-team -->
-
-
 @endsection

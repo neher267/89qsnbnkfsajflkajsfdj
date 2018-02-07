@@ -2,45 +2,39 @@
 
 
 @section('main-content')
-<!-- short -->
 
-<!-- //short-->
-
-<!-- about -->
-<div class="about-sec" id="about">
-	<div class="container">
-		<div class="title-div">
-			<h3 class="tittle">
-				<span>P</span>lay
-			</h3>
-			<div class="tittle-style">
-
-			</div>
-		</div>		
-	</div>
-</div>
-<!-- //about -->
-<!-- Achievements -->
 <div class="aitsresumethree">
-	<div class="container">
-		<?php
-			$a = $questions[0];
-		?>		
-		<h5>Qsn: <span id="qsn">{{$a['question']}}</span></h5>
-		<br>
-		<p>Ans: <input type="text" style="padding: 0px; margin:0px"></p>
-		<br>
-		<button id="1" class="btn" onclick="next(id)">Next</button>		
+	<div class="container" style="min-height: 405px;">
+		<div class="col-sm-offset-3 col-sm-6" style="margin-bottom: 20px;">
+
+			<div class="panel panel-primary">
+			<div class="panel-heading">
+				Play Game
+			</div>
+			  <div class="panel-body">
+			  	<div>
+			  		
+			  		<p><strong>Qqestion: </strong>
+			  			@foreach($questions as $question)
+							{{ $question->question }}
+						@endforeach
+			  		</p>
+			  	</div>
+			  	
+				<p><strong>Answer:  </strong><input type="text" style="padding: 0px; margin:0px"></p>
+				<br>
+				</div>
+				<div class="panel-footer">
+					{{ $questions->links() }}
+				</div>
+			</div>
+		</div>	
 	</div>
 </div>
 
-<script>
-	
+<script>	
 	function next(index){
-		
-
 		document.getElementById('qsn').innerHTML = index;		
 	}
 </script>
-
 @endsection

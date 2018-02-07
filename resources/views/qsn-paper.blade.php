@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('banner')
+	@include('layouts.partials._banner')
+@endsection
 
 @section('main-content')
 

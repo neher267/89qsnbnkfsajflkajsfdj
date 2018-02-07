@@ -34,7 +34,7 @@
 	@include('layouts.partials._header')
 	<!-- //header -->
 	<!-- banner -->
-	@include('layouts.partials._banner')
+	@yield('banner')
 	<!--//banner -->
 
 	@yield('main-content')	

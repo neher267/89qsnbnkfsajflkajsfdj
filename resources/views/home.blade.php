@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('banner')
+    @include('layouts.partials._banner')
+@endsection
 
 @section('content')
 <div class="container">
@@ -21,3 +24,4 @@
     </div>
 </div>
 @endsection
+

@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('banner')
+	@include('layouts.partials._banner')
+@endsection
 
 @section('main-content')
 
@@ -28,6 +31,4 @@
 		</div>
 	</div>
 </div>
-<!-- //about -->
-
 @endsection
