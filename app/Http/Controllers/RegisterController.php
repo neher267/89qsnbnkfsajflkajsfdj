@@ -20,7 +20,9 @@ class RegisterController extends Controller
     {
         if(!session('validation'))
         {
-            session(['validation' => 'no']); 
+            session([
+                'validation' => 'no',
+                ]);
         }          
         $classes = StudentClass::get();
         $genders = Gender::get();

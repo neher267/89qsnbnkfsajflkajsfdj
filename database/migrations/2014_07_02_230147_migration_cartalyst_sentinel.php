@@ -81,8 +81,8 @@ class MigrationCartalystSentinel extends Migration
             $table->integer('gender_id')->unsigned();
             $table->string('mobile');
             $table->string('password');
-            $table->string('name');            
-            $table->string('institute_name');
+            $table->string('name');
+            $table->decimal('marks', 6,0)->default(0);
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();
             $table->timestamps();

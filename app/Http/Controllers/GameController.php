@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 use Session;
+use App\Gift;
 
 class GameController extends Controller
 {
@@ -12,11 +13,14 @@ class GameController extends Controller
     {
         //$questions = $this->session_handling();
         $questions = Question::where('category_id',1)
-                                    ->where('subject_id', 1)
+                                    ->where('subject', $subject)
                                     ->inRandomOrder()
                                     ->simplePaginate(1);
 
-        return view('game.show', compact('questions'));
+       $gifts = Gift::where('marks', '<=', (int)request()->user()->marks)->get();
+        
+
+        return view('game.show', compact('questions', 'gifts'));
     }
 
 
@@ -36,5 +40,19 @@ class GameController extends Controller
             Session::put('key', $questions, 60);  
         }        
         return $questions;
+    }
+
+    public function check(Request $request)
+    {
+        if($request->ans == $request->main_ans)
+        {
+            $user = $request->user();
+            $marks = 1 + (int)$user->marks;
+            $user->marks = $marks;
+            $user->save();
+
+        }
+
+        return redirect()->back();
     }
 }

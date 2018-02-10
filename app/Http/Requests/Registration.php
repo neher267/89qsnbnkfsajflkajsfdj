@@ -27,7 +27,6 @@ class Registration extends FormRequest
             'name' => 'required| string| max:50|min:3',
             'class_id' => 'required| numeric',
             'gender_id' => 'required| numeric',
-            'institute_name' => 'required|string|max:100| min:10',
             'password' => 'required|string|min:6|confirmed',            
         ];
     }

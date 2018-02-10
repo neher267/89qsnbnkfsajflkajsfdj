@@ -18,9 +18,6 @@
                           <strong>{{ $errors->first('mobile') }}</strong>
                       </span>
                  @endif
-                 <div id="abc">
-                   hh
-                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="country_code">+880</span>
                     <input  id="phone_number" type="text" class="form-control" placeholder="Mobile No">                     
@@ -73,13 +70,9 @@
                     <p>Class</p>
                     <select name="class_id" class="form-control" required>
                     @foreach($classes as $class)
-                        <option value="{{$class->id}}" style="margin-right: 20px">{{$class->name}}</option>                        
+                      <option value="{{$class->id}}" style="margin-right: 20px">{{$class->name}}</option>                        
                     @endforeach
                     </select>
-                </div>
-                <div class="">
-                    <p>Institute Name</p>
-                    <input type="text" class="name" name="institute_name" required="" />
                 </div>
                 <div class="">
                     <p>Password</p>
@@ -109,7 +102,7 @@
               {
                 appId:"1991821631059766", 
                 state: "csrf_field()", 
-                version:"v2.11",
+                version:"v1.1",
                 fbAppEventsEnabled:true,
                 redirect:"{{url('register.create')}}"
               }
@@ -122,7 +115,6 @@
 
             var countryCode = document.getElementById("country_code").innerHTML;
             var phoneNumber = document.getElementById("phone_number").value;
-            document.getElementById("mobile").value = document.getElementById("phone_number").value;
             AccountKit.login(
               'PHONE', 
               {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified

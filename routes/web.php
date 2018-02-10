@@ -18,3 +18,4 @@ Route::get('question/{subject}/{year}/{class}' , 'QuestionController@show');
 
 //game
 Route::get('play-game/{subject}', 'GameController@index');
+Route::post('/check', 'GameController@check');
