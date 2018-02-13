@@ -12,7 +12,7 @@ class GameController extends Controller
     public function index($subject)
     {
         //$questions = $this->session_handling();
-        $questions = Question::where('category_id',1)
+        $questions = Question::where('category', request()->user()->category)
                                     ->where('subject', $subject)
                                     ->inRandomOrder()
                                     ->simplePaginate(1);
@@ -20,7 +20,7 @@ class GameController extends Controller
        $gifts = Gift::where('marks', '<=', (int)request()->user()->marks)->get();
         
 
-        return view('game.show', compact('questions', 'gifts'));
+        return view('frontend.game.show', compact('questions', 'gifts'));
     }
 
 

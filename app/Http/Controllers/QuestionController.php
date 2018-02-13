@@ -8,6 +8,6 @@ class QuestionController extends Controller
 {
     public function show($subject, $year, $class)
     {
-    	return view('qsn-paper', compact('subject', 'year', 'class'));
+    	return view('frontend.qsn-paper', compact('subject', 'year', 'class'));
     }
 }

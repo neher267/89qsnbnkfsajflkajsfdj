@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\StudentClass;
-use App\Gender;
 use Sentinel;
-use App\Http\Requests\Registration;
+use App\Http\Requests\RegistrationRequest;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -21,13 +20,14 @@ class RegisterController extends Controller
         if(!session('validation'))
         {
             session([
-                'validation' => 'no',
+                'validation' => 'yes',
+                'mobile'=> '01784255111'
                 ]);
         }          
-        $classes = StudentClass::get();
-        $genders = Gender::get();
+        $genders = config('settings.genders');
 
-        return view('auth.register', compact('classes','genders'));
+        return view('frontend.auth.register', compact('genders'));
+
     }
 
     /**
@@ -37,18 +37,34 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Registration $request)
+    public function store(RegistrationRequest $request)
     {   
+        //dd(Carbon::parse($request->dob));
+        $date = Carbon::parse($request->dob); 
+        $years = Carbon::now()->diffInYears($date);
         $data = $request->all();
         $data['mobile'] = session('mobile'); 
+        $data['category'] = $this->category($years); 
+        $data['dob'] = $date;
         $user = Sentinel::registerAndActivate($data);
-        $role = Sentinel::findRoleBySlug('student');
+        $role = Sentinel::findRoleBySlug('admin');
         if($role){ $role->users()->attach($user); }  
 
         session(['validation' => 'no', 'mobile' => '']);
         Sentinel::login($user);
 
         return redirect('/');  
+    }
+
+    protected function category(int $years)
+    {
+        if($years > 4 && $years <= 12)
+            return 0; //infant
+        elseif ($years > 12 && $years <= 18)
+            return 1; //young
+        elseif($years > 19 && $years <= 150)
+            return 2; //adults
+
     }
 
     /**

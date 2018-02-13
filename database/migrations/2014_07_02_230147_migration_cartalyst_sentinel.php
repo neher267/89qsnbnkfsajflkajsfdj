@@ -77,13 +77,14 @@ class MigrationCartalystSentinel extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class_id')->unsigned();
-            $table->integer('gender_id')->unsigned();
-            $table->string('mobile');
+            $table->string('gender', 1);
+            $table->string('category', 1); //kids, young, adults
+            $table->string('mobile', 11);
             $table->string('password');
             $table->string('name');
             $table->decimal('marks', 6,0)->default(0);
             $table->text('permissions')->nullable();
+            $table->timestamp('dob');
             $table->timestamp('last_login')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';

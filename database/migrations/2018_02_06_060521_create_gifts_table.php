@@ -16,7 +16,7 @@ class CreateGiftsTable extends Migration
         Schema::create('gifts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->decimal('marks', 5,0);
+            $table->decimal('marks', 6,0);
             $table->string('image');
             $table->timestamps();
         });
