@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Option;
 
 class QuestionController extends Controller
 {
@@ -35,6 +36,22 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $question = new Option; 
+        $question->category = $request->user()->category;
+        $question->subject = $request->subject;
+        $question->question = $request->question;
+        $question->weight = $request->weight;
+
+        $question->save();
+        
+
+        $question->$request->user()->category;
+
+        
+        
+        
+        $options = $request->option;
+        dd($options);
         dd($request->all());
     }
 
