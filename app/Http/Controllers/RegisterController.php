@@ -20,8 +20,7 @@ class RegisterController extends Controller
         if(!session('validation'))
         {
             session([
-                'validation' => 'yes',
-                'mobile'=> '01784255111'
+                'validation' => 'no',
                 ]);
         }          
         $genders = config('settings.genders');
@@ -43,10 +42,13 @@ class RegisterController extends Controller
         $date = Carbon::parse($request->dob); 
         $years = Carbon::now()->diffInYears($date);
         $data = $request->all();
+
         $data['mobile'] = session('mobile'); 
         $data['category'] = $this->category($years); 
         $data['dob'] = $date;
+
         $user = Sentinel::registerAndActivate($data);
+        
         $role = Sentinel::findRoleBySlug('admin');
         if($role){ $role->users()->attach($user); }  
 

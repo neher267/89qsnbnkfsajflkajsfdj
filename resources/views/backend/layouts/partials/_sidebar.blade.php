@@ -15,11 +15,13 @@
                             <li>
                                 <a href="{{route('questions.create')}}">Add Question</a>
                             </li>
+                            @foreach(config('settings.subjects') as $key => $subject)
+                            <li>
+                                <a href="{{url("questions/subject/$key")}}">{{$subject}} Questions</a>
+                            </li>
+                            @endforeach
                         </ul>
-                    </li>
-                    <li>
-                        <a href="widgets.html"><i class="fa fa-th-large nav_icon"></i>Widgets</a>
-                    </li>                    
+                    </li>                                       
                 </ul>
             </div>
         </nav>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Option;
+use App\Question;
 
 class QuestionController extends Controller
 {
@@ -13,9 +14,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function subject_questions($subject)
     {
-        //
+        $questions = Question::where('subject', $subject)->orderBy('weight', 'asc')->get();
+        return view('backend.question.index', compact('questions'));
     }
 
     /**
@@ -36,23 +38,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question = new Option; 
-        $question->category = $request->user()->category;
-        $question->subject = $request->subject;
-        $question->question = $request->question;
-        $question->weight = $request->weight;
-
-        $question->save();
-        
-
-        $question->$request->user()->category;
-
-        
-        
-        
-        $options = $request->option;
-        dd($options);
-        dd($request->all());
+        $data = $request->all();
+        $data['category'] = $request->user()->category;
+        Question::create($data);
+        return redirect()->back()->withSuccess('Question Saved Successfully!');
     }
 
     /**
@@ -74,7 +63,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('backend.question.edit', compact('question'));
     }
 
     /**
@@ -86,7 +76,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::find($id);
+        $data = $request->all();
+        $data['category'] = $request->user()->category;
+        $question->update($data);
+
+        return redirect("questions/subject/$question->subject")->withSuccess('Question Updated Successfully!');
     }
 
     /**

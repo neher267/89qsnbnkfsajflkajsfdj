@@ -322,5 +322,7 @@
 	</div>
 
 	<script src="{{asset('js/backend-footer.js')}}"></script>
+
+    @yield('script')
 </body>
 </html>

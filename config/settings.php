@@ -2,8 +2,8 @@
 
 return [
 	'subjects'=>[
-		'0'=>'english',
-		'1'=>'bangla',
+		'en'=>'English',
+		'math'=>'Math',
 		
 	  ],
 	  'genders'=>[
@@ -17,9 +17,14 @@ return [
 	  	'2'=>'Adult',
 	  ],
 
-	  'options' =>['A', 'B', 'C', 'D'],
-	  'weight' => [
-	  	'0'=> 'easy'
+	  'options' =>[
+	  	'a'=>'A', 
+	  	'b'=>'B',
+	  	'c'=>'C',
+	  	'd'=>'D'
+	  ],
+	  'weights' => [
+	  	'Very Easy', 'Easy', 'Medium', 'Heard', 'Very Hard'
 	  ],
 	  
 ];

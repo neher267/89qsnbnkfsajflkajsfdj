@@ -9,10 +9,7 @@ class PublicController extends Controller
 {
     public function index()
     {
-        //$slug = Sentinel::getUser()->roles()->first()->slug;
-        //$user = Sentinel::getUser();
-        //dd($user->roles());
-    	return view('frontend.index');
+        return view('frontend.index');
     }
 
     public function about_us()

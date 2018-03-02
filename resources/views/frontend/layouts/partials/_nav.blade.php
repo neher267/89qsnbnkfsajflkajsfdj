@@ -7,13 +7,14 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<nav class="link-effect-1" id="link-effect-1">
 		<ul class="nav navbar-nav">
-			<li>
-				<a href="{{ url('/dashboard' )}}" class="effect-3">Dashboard</a>
-			</li>
-
 			<li class="{{ Request::segment(1) == '' ?  'active':'' }}">
 				<a href="{{ url('/' )}}" class="effect-3">Home</a>
 			</li>
+			@role('admin')
+			<li>
+				<a href="{{ url('/dashboard' )}}" class="effect-3">Dashboard</a>
+			</li>
+			@endrole
 			<li class="{{ Request::segment(1) == 'about-us' ?  'active':'' }}">
 				<a href="{{ url('about-us') }}" class="effect-3">About Us</a>
 			</li>
@@ -32,8 +33,8 @@
 				$class_id = $user->class_id;
 				?>			
 					<li>
-						@foreach(config('settings.subjects') as $subject)
-							<a href="{{url("play-game/$subject")}}">{{$subject}}</a>
+						@foreach(config('settings.subjects') as $key => $subject)
+							<a href="{{url("play-game/$key")}}">{{$subject}}</a>
 						@endforeach
 					</li>			
 				</ul>

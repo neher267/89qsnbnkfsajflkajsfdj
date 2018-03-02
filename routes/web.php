@@ -17,9 +17,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('question/{subject}/{year}/{class}' , 'QuestionController@show');
 
-Route::group(['namespace'=>'Admin'], function(){
+Route::group(['namespace'=>'Admin', 'middleware' => ['myauth','admin']], function(){
 	Route::get('dashboard','DashboardController@index');
 	Route::resource('questions','QuestionController');
+	Route::get('questions/subject/{subject}','QuestionController@subject_questions');
 });
 
 Route::get('question-setup', function(){
@@ -38,7 +39,9 @@ Route::get('question-setup', function(){
 });
 
 //game
-Route::get('play-game/{subject}', 'GameController@index');
-Route::post('/check', 'GameController@check');
+Route::group(['middleware'=>['myauth']], function(){
+	Route::get('play-game/{subject}', 'GameController@index');
+	Route::post('/check', 'GameController@check');
+});
 
 

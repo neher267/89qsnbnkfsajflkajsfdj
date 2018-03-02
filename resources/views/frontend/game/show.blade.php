@@ -3,6 +3,12 @@
 
 @section('main-content')
 
+<style type="text/css">
+	.btn{
+		padding: 0px 5px;
+	}
+</style>
+
 <div class="aitsresumethree">
 	<div class="container" style="min-height: 405px;">
 		<div class="col-sm-offset-3 col-sm-6" style="margin-bottom: 20px;">
@@ -14,14 +20,14 @@
 			</div>
 			  <div class="panel-body">
 			  @if($gifts->count())
-			  	@foreach ($gifts->chunk(3) as $chunk)
+			  	@foreach ($gifts->chunk(4) as $chunk)
 				    <div id="gifts" class="row" style="border-top: 1px solid #337ab7; border-bottom: 1px solid #337ab7; display: none">
 				    <button class="btn btn-default pull-right" onclick="gifts_hide()">Hide</button>
 				        @foreach ($chunk as $gift)
-				            <div class="col-xs-4" style=" margin-top: 15px;">
+				            <div class="col-xs-3" style=" margin-top: 15px;">
 				            		<img src="{{asset($gift->image)}}" alt="{{$gift->name}}" style="height: 100%; width: 100%; border: 2px solid green">
 				            		<p style="color: black"><strong>Name:</strong> {{$gift->name}}</p>
-				            </div>
+				            </div>				            
 				        @endforeach				        
 				    </div>
 				@endforeach
@@ -33,31 +39,26 @@
 				@endif
 				 			  
 			  	<div>		  		
-			  		@foreach($questions as $question)						
+			  		@if($question)						
 						<form action="{{url('/check')}}" method="post">
 							{{ csrf_field() }}
 
-							<p style="color: black"><strong>Qqestion: </strong>
+							<p style="color: black"><strong>Question: </strong>
 								{{ $question->question }}
 							</p>
-							<p style="color: black; margin-top: 15px;"><strong>Answer: </strong>
-								<input name="ans" type="text" style="padding: 0px; margin:0px">
-								<input name="main_ans" type="hidden" value="{{$question->ans}}" style="padding: 0px; margin:0px">
-							</p>
+							<p><strong style="color: black">Options:</strong></p>
+							@foreach(config('settings.options') as $key => $value)
+							<label style="display: block;"><input type="radio" name="ans" style="margin-top: 5px;" value="{{$key}}"> {{$question->$key}}</label>
+							@endforeach
+							<input type="hidden" name="main_ans" value="{{$question->ans}}">
+
 							<div style="margin-top: 15px;">
 								<input type="submit" class="btn btn-sm">
 							</div>
 						</form>
-					@endforeach			  		
-			  	</div>			  	
-				
-				<br>
-				</div>
-				<div class="panel-footer">
-					<div style="margin-left: 15%">
-						{{ $questions->links() }}
-					</div>					
-				</div>
+					@endif 			  		
+			  	</div>
+			  </div>
 			</div>
 		</div>	
 	</div>

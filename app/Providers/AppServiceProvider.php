@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Sentinel;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
             Schema::defaultStringLength(191);
+            \Blade::if('role', function($slug){
+                if(Sentinel::check())
+                {
+                    return Sentinel::getUser()->roles()->first()->slug === $slug;
+                }
+                else{
+                    return false;
+                }
+            });
     }
 
     /**

@@ -18,6 +18,11 @@ class CreateQuestionsTable extends Migration
             $table->string('category', 1);
             $table->string('subject', 30);
             $table->text('question');
+            $table->string('a');//options: a,b,c,d
+            $table->string('b');
+            $table->string('c');
+            $table->string('d');
+            $table->string('ans', 1);
             $table->double('weight', 2,0);
             $table->timestamps();
         });
